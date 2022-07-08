@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
           scaffoldBackgroundColor: backgroundColor,
           backgroundColor: backgroundColor,
           fontFamily: GoogleFonts.dmSans().fontFamily,
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
           )),
       debugShowCheckedModeBanner: false,
       home: ScreenMain(),
+      
     );
   }
 }

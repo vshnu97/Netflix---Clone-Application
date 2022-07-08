@@ -11,10 +11,10 @@ class ScreenMain extends StatelessWidget {
 
   final _pages = [
     const ScreenHome(),
-    const ScreenFastLaugh(),
     const ScreenNewAndHot(),
+    const ScreenFastLaugh(),
     const ScreenSearch(),
-     ScreenDownloads()
+    ScreenDownloads()
   ];
 
   @override
