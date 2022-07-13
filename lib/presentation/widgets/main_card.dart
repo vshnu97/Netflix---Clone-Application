@@ -13,14 +13,13 @@ class MainCardWidget extends StatelessWidget {
       child: Container(
         width: 125,
         height: 200,
-        decoration:  BoxDecoration(
-         // color: Colors.deepOrange,
-          borderRadius: kRadius5,
+        decoration: BoxDecoration(
+            // color: Colors.deepOrange,
+            borderRadius: kRadius5,
             image: const DecorationImage(
-              fit: BoxFit.cover,
+                fit: BoxFit.cover,
                 image: NetworkImage(
-                    "https://m.media-amazon.com/images/M/MV5BMTkzNjQyMzIzOF5BMl5BanBnXkFtZTcwMjI0MDk3OA@@._V1_.jpg"))
-                    ),
+                    "https://m.media-amazon.com/images/M/MV5BMTkzNjQyMzIzOF5BMl5BanBnXkFtZTcwMjI0MDk3OA@@._V1_.jpg"))),
       ),
     );
   }

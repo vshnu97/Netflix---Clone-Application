@@ -7,7 +7,8 @@ class CustomButtonIcon extends StatelessWidget {
     required this.icon,
     required this.label,
     this.iconSize = 25,
-    this.textSize = 16, this.textColor=Colors.white,
+    this.textSize = 16,
+    this.textColor = Colors.white,
   }) : super(key: key);
   final IconData icon;
   final String label;
@@ -29,7 +30,8 @@ class CustomButtonIcon extends StatelessWidget {
           style: TextStyle(
               fontWeight: FontWeight.bold,
               letterSpacing: .8,
-              fontSize: textSize,color: textColor),
+              fontSize: textSize,
+              color: textColor),
         )
       ],
     );

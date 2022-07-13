@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/downloads/downloads_bloc.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constant.dart';
 import 'package:netflix/presentation/widgets/app_bar_widget.dart';
@@ -10,7 +12,7 @@ class ScreenDownloads extends StatelessWidget {
 
   final _widgetsList = [
     const _SmartDownloads(),
-    Section2(),
+    const Section2(),
     const Section3(),
   ];
 
@@ -35,16 +37,21 @@ class ScreenDownloads extends StatelessWidget {
 }
 
 class Section2 extends StatelessWidget {
-  Section2({Key? key}) : super(key: key);
+  const Section2({Key? key}) : super(key: key);
 
-  final List imageList = [
-    "https://images.news18.com/ibnlive/uploads/2019/10/Movies-First-Look-Sanjay-Dutt-as-Ahmad-Shah-Abdali-in-Panipat.jpg?impolicy=website&width=0&height=0",
-    "https://4.bp.blogspot.com/-dqkWYLpZ-Rg/XEGiQ8sFVXI/AAAAAAAAXO4/eSW56lyAYOMYMm2yacOT1qvx_raMD7w4wCLcBGAs/s1600/indian-2-upcoming-movie-poster-star-cast-release-date-mt-wiki.jpg",
-    "https://upload.wikimedia.org/wikipedia/en/9/99/Dangal_Poster.jpg"
-  ];
+  // final List imageList = [
+  //   "https://images.news18.com/ibnlive/uploads/2019/10/Movies-First-Look-Sanjay-Dutt-as-Ahmad-Shah-Abdali-in-Panipat.jpg?impolicy=website&width=0&height=0",
+  //   "https://4.bp.blogspot.com/-dqkWYLpZ-Rg/XEGiQ8sFVXI/AAAAAAAAXO4/eSW56lyAYOMYMm2yacOT1qvx_raMD7w4wCLcBGAs/s1600/indian-2-upcoming-movie-poster-star-cast-release-date-mt-wiki.jpg",
+  //   "https://upload.wikimedia.org/wikipedia/en/9/99/Dangal_Poster.jpg"
+  // ];
 
   @override
   Widget build(BuildContext context) {
+    // WidgetsBinding.instance!.addPostFrameCallback((_) {
+
+    // });
+    BlocProvider.of<DownloadsBloc>(context)
+        .add(const DownloadsEvent.getDownloadsImage());
     final Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -62,35 +69,42 @@ class Section2 extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey)),
-        SizedBox(
-          width: size.width,
-          height: size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                radius: size.width * .31,
-                backgroundColor: Colors.grey.withOpacity(.45),
+        BlocBuilder<DownloadsBloc, DownloadsState>(
+          builder: (context, state) {
+            return SizedBox(
+              width: size.width,
+              height: size.width,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: size.width * .31,
+                    backgroundColor: Colors.grey.withOpacity(.45),
+                  ),
+                  DownloadsImageWidget(
+                    imageList:
+                        'https://image.tmdb.org/t/p/w500${state.downloads[9].posterPath}',
+                    margin: const EdgeInsets.only(right: 140, top: 20),
+                    angle: -22,
+                    size: Size(size.width * .29, size.width * .4),
+                  ),
+                  DownloadsImageWidget(
+                    imageList:
+                        'https://image.tmdb.org/t/p/w500${state.downloads[4].posterPath}',
+                    margin: const EdgeInsets.only(left: 140, top: 20),
+                    angle: 22,
+                    size: Size(size.width * .29, size.width * .4),
+                  ),
+                  DownloadsImageWidget(
+                    imageList:
+                        'https://image.tmdb.org/t/p/w500${state.downloads[10].posterPath}',
+                    margin: const EdgeInsets.only(bottom: 20, top: 20),
+                    size: Size(size.width * .33, size.width * .47),
+                  )
+                ],
               ),
-              DownloadsImageWidget(
-                imageList: imageList[1],
-                margin: const EdgeInsets.only(right: 140, top: 20),
-                angle: -22,
-                size: Size(size.width * .29, size.width * .4),
-              ),
-              DownloadsImageWidget(
-                imageList: imageList[0],
-                margin: const EdgeInsets.only(left: 140, top: 20),
-                angle: 22,
-                size: Size(size.width * .29, size.width * .4),
-              ),
-              DownloadsImageWidget(
-                imageList: imageList[2],
-                margin: const EdgeInsets.only(bottom: 20, top: 20),
-                size: Size(size.width * .33, size.width * .47),
-              )
-            ],
-          ),
+            );
+          },
         ),
       ],
     );
@@ -159,7 +173,10 @@ class _SmartDownloads extends StatelessWidget {
           color: kWhiteColor,
         ),
         kWidth,
-        Text('Smart downloads',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),)
+        Text(
+          'Smart downloads',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+        )
       ],
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/downloads/downloads_bloc.dart';
 import 'package:netflix/core/constant.dart';
 import 'package:netflix/presentation/home/background_card.dart';
 import 'package:netflix/presentation/home/number_title_card.dart';
@@ -12,6 +14,8 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<DownloadsBloc>(context)
+        .add(const DownloadsEvent.getDownloadsImage());
     return Scaffold(
       body: SafeArea(
           child: ValueListenableBuilder(

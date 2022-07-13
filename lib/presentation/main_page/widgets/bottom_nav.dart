@@ -15,8 +15,8 @@ class BottomNavWidget extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             backgroundColor: backgroundColor,
             currentIndex: index,
-            onTap: (index){
-              indexValueChanger.value=index;
+            onTap: (index) {
+              indexValueChanger.value = index;
             },
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.grey,
