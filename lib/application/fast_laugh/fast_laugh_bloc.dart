@@ -9,11 +9,12 @@ part 'fast_laugh_state.dart';
 part 'fast_laugh_bloc.freezed.dart';
 
 final dummyVideoUrls = [
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4'
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4'
+  'https://assets.mixkit.co/videos/preview/mixkit-motorcyclist-speeding-through-a-desert-39934-large.mp4',
+  'https://assets.mixkit.co/videos/preview/mixkit-family-walking-together-in-nature-39767-large.mp4',
+  'https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4',
+  'https://assets.mixkit.co/videos/preview/mixkit-beer-foam-spilling-into-a-glass-on-white-background-5066-large.mp4',
+  'https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-young-boxer-training-on-a-ring-40971-large.mp4',
+  'https://assets.mixkit.co/videos/preview/mixkit-tree-branches-in-the-breeze-1188-large.mp4',
 ];
 
 @injectable

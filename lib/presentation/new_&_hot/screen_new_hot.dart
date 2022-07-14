@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:netflix/application/hot_and_new/hot_and_new_bloc.dart';
+import 'package:netflix/application/search/search_bloc.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constant.dart';
 import 'package:netflix/presentation/new_&_hot/widget/coming_up_widget.dart';
@@ -10,6 +12,9 @@ class ScreenNewAndHot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<SearchBloc>(context).add(const Initialize());
+     });
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -60,8 +65,8 @@ class ScreenNewAndHot extends StatelessWidget {
                 ]),
           ),
         ),
-        body:  TabBarView(children: [
-          const ComingSoonList(key:Key('comming soon')),
+        body: TabBarView(children: [
+          const ComingSoonList(key: Key('comming soon')),
           _buildEveryonesWatching(),
         ]),
       ),
@@ -88,11 +93,11 @@ class ComingSoonList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((_){
-      BlocProvider.of<HotAndNewBloc>(context).add(const LoadDDataInComingSoon());
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<HotAndNewBloc>(context)
+          .add(const LoadDDataInComingSoon());
     });
-     
-    
+
     return BlocBuilder<HotAndNewBloc, HotAndNewState>(
         builder: (context, state) {
       if (state.isLoading) {
@@ -118,11 +123,29 @@ class ComingSoonList extends StatelessWidget {
               if (movie.id == null) {
                 return const SizedBox();
               } else {
+                String month = '';
+                String day = '';
+                try {
+                  final _date = DateTime.tryParse(movie.releaseDate!);
+                  final formattedDAte =
+                      DateFormat.yMMMMd('en_US').format(_date!);
+                  month = formattedDAte
+                      .split(' ')
+                      .first
+                      .substring(0, 3)
+                      .toUpperCase();
+                  day = movie.releaseDate!.split('-')[1];
+                  print(day);
+                  print(month);
+                } catch (_) {
+                  month = '';
+                }
+
                 return ComingUpWidget(
                     id: movie.id.toString(),
-                    month: 'FEB',
-                    day: '16',
-                    posterPath: '$imageAppendUrl${movie.posterPath}',
+                    month: month,
+                    day: day,
+                    posterPath: '$imageAppendUrl${movie.backdropPath}',
                     movieName: movie.orginalTitle ?? 'No title',
                     description: movie.overview ?? 'No description');
               }

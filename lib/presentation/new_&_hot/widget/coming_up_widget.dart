@@ -14,12 +14,12 @@ class ComingUpWidget extends StatelessWidget {
 
   const ComingUpWidget(
       {Key? key,
-     required this.id,
-     required this.month,
-     required this.day,
-     required this.posterPath,
-    required  this.movieName,
-     required this.description})
+      required this.id,
+      required this.month,
+      required this.day,
+      required this.posterPath,
+      required this.movieName,
+      required this.description})
       : super(key: key);
 
   @override
@@ -30,11 +30,11 @@ class ComingUpWidget extends StatelessWidget {
       children: [
         SizedBox(
           width: 55,
-          height: 480,
+          height: 490,
           child: Column(
-            children:  [
+            children: [
               Text(
-               month,
+                month,
                 style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -53,7 +53,7 @@ class ComingUpWidget extends StatelessWidget {
         ),
         SizedBox(
           width: size.width - 55,
-          height: 480,
+          height: 490,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -86,17 +86,18 @@ class ComingUpWidget extends StatelessWidget {
               kheight20,
               Row(
                 children: [
-                  Text(
-                    movieName,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(
-                        fontSize: 40,
-                        fontFamily: GoogleFonts.indieFlower().fontFamily,
-                        letterSpacing: -2,
-                        fontWeight: FontWeight.bold),
+                  Expanded(
+                    child: Text(
+                      movieName,
+                      overflow: TextOverflow.clip,
+                      maxLines: 1,
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontFamily: GoogleFonts.indieFlower().fontFamily,
+                          letterSpacing: -2,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  const Spacer(),
                   Column(
                     children: [
                       Row(
@@ -125,7 +126,7 @@ class ComingUpWidget extends StatelessWidget {
                 ],
               ),
               kheight,
-               Text('Coming on $day $month',
+              Text('Coming on $day $month',
                   style: const TextStyle(fontWeight: FontWeight.w600)),
               kheight20,
               Column(
@@ -148,16 +149,16 @@ class ComingUpWidget extends StatelessWidget {
                     ],
                   ),
                   kheight5,
-                   Text(
+                  Text(
                     movieName,
-                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   kheight15,
-                   Text(
-                    
-                   description,
-                   overflow: TextOverflow.ellipsis,
-                   maxLines: 4,
+                  Text(
+                    description,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 4,
                     style: const TextStyle(color: kGreyColor),
                   )
                 ],

@@ -130,8 +130,10 @@ class _FastlaughVideoPlayerState extends State<FastlaughVideoPlayer> {
     _videoPlayerController = VideoPlayerController.network(widget.videoUrl);
     _videoPlayerController.initialize().then((value) {
       setState(() {
-        _videoPlayerController.play();
+       
       });
+       _videoPlayerController.play();
+       _videoPlayerController.setLooping(true);
     });
     super.initState();
   }
@@ -142,10 +144,7 @@ class _FastlaughVideoPlayerState extends State<FastlaughVideoPlayer> {
       width: double.infinity,
       height: double.infinity,
       child: _videoPlayerController.value.isInitialized
-          ? AspectRatio(
-              aspectRatio: _videoPlayerController.value.aspectRatio,
-              child: VideoPlayer(_videoPlayerController),
-            )
+          ? VideoPlayer(_videoPlayerController)
           : const Center(
               child: CircularProgressIndicator(
                 strokeWidth: 2,

@@ -7,6 +7,9 @@ class ApiEndPoints {
   static const hotAndNewMovie =
       'https://api.themoviedb.org/3/discover/movie?api_key=$apiKey';
 
-        static const hotAndNewTv =
+  static const hotAndNewTv =
       'https://api.themoviedb.org/3/discover/tv?api_key=$apiKey';
+
+  static const search =
+      'https://api.themoviedb.org/3/search/movie?api_key=$apiKey';
 }

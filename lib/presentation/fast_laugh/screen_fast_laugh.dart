@@ -12,7 +12,7 @@ class ScreenFastLaugh extends StatelessWidget {
       BlocProvider.of<FastLaughBloc>(context).add(const Initialize());
     });
     return Scaffold(
-      body: SafeArea(child: BlocBuilder<FastLaughBloc, FastLaughState>(
+      body: BlocBuilder<FastLaughBloc, FastLaughState>(
         builder: (context, state) {
           if (state.isLoading) {
             return const Center(
@@ -41,7 +41,7 @@ class ScreenFastLaugh extends StatelessWidget {
                 }));
           }
         },
-      )),
+      ),
     );
   }
 }

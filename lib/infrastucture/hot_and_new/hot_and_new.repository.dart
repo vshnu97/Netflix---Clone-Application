@@ -14,9 +14,9 @@ class HotAndNewRepository implements HotAndNewService {
   @override
   Future<Either<MainFailure, HotAndNewResp>> getHotAndNewMovieData() async {
     try {
-      final  response =
+      final response =
           await Dio(BaseOptions()).get(ApiEndPoints.hotAndNewMovie);
-
+      log(response.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = HotAndNewResp.fromJson(response.data);
 
@@ -35,8 +35,7 @@ class HotAndNewRepository implements HotAndNewService {
   @override
   Future<Either<MainFailure, HotAndNewResp>> getHotAndNewTvData() async {
     try {
-      final  response =
-          await Dio(BaseOptions()).get(ApiEndPoints.hotAndNewTv);
+      final response = await Dio(BaseOptions()).get(ApiEndPoints.hotAndNewTv);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final results = HotAndNewResp.fromJson(response.data);
