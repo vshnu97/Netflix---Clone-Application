@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:netflix/domain/search/model/search_resp/search_resp.dart';
@@ -16,6 +18,7 @@ class SearchImp implements SearchService {
           await Dio(BaseOptions()).get(ApiEndPoints.search, queryParameters: {
         'query': movieQuery,
       });
+      log(response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = SearchResp.fromJson(response.data);
 

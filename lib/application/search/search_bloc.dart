@@ -31,6 +31,12 @@ if(state.idleLIst.isNotEmpty){
          isError: false));
   return;
 }
+emit( SearchState(
+        searchResultList: [], 
+        idleLIst: state.idleLIst, 
+        isLoading: true,
+         isError: false));
+
       
       //get trending
     final result = await  _downloadService.getDownloadsImage();
@@ -56,8 +62,28 @@ if(state.idleLIst.isNotEmpty){
 
 //search result state
 
-    on<SearchMovie>((event, emit) {
-      _searchService.searchMovies(movieQuery: event.movieQuery);
+    on<SearchMovie>((event, emit) async{
+      emit( SearchState(
+        searchResultList: [], 
+        idleLIst: state.idleLIst, 
+        isLoading: true,
+         isError: false));
+    final resultSearch = await  _searchService.searchMovies(movieQuery: event.movieQuery);
+   
+   final _state = resultSearch.fold((MainFailure f) {
+     return  const SearchState(
+        searchResultList: [], 
+        idleLIst: [], 
+        isLoading: false,
+         isError: true);
+   }, (SearchResp r){
+     return  SearchState(
+        searchResultList: r.results, 
+        idleLIst: [], 
+        isLoading: false,
+         isError: false);
+   });
+   emit(_state);
     });
   }
 }
