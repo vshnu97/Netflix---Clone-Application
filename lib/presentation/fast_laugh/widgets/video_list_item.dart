@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix/application/fast_laugh/fast_laugh_bloc.dart';
 import 'package:netflix/core/constant.dart';
 import 'package:netflix/domain/downloads/models/download.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoListItemInheritedWidget extends InheritedWidget {
@@ -69,8 +70,13 @@ class VideoListItem extends StatelessWidget {
                     const ListPageActions(
                         icon: Icons.emoji_emotions_outlined, title: 'LOL'),
                     const ListPageActions(icon: Icons.add, title: 'My List'),
-                    const ListPageActions(
-                        icon: Icons.share_outlined, title: ' Share'),
+                    GestureDetector(
+                      onTap:(){
+                       Share.share('https://github.com/vshnu97', subject: 'Look !');
+                      },
+                      child: const ListPageActions(
+                          icon: Icons.share_outlined, title: ' Share'),
+                    ),
                     const ListPageActions(icon: Icons.play_arrow, title: 'Play')
                   ],
                 )
@@ -129,11 +135,9 @@ class _FastlaughVideoPlayerState extends State<FastlaughVideoPlayer> {
   void initState() {
     _videoPlayerController = VideoPlayerController.network(widget.videoUrl);
     _videoPlayerController.initialize().then((value) {
-      setState(() {
-       
-      });
-       _videoPlayerController.play();
-       _videoPlayerController.setLooping(true);
+      setState(() {});
+      _videoPlayerController.play();
+      _videoPlayerController.setLooping(true);
     });
     super.initState();
   }

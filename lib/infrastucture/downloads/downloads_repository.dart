@@ -12,7 +12,7 @@ class DownloadsRepository implements IDownloadRepo {
   Future<Either<MainFailure, List<Downloads>>> getDownloadsImage() async {
     try {
       final Response response =
-          await Dio(BaseOptions()).get(ApiEndPoints.downloads);
+          await Dio(BaseOptions()).get(ApiEndPoints.indian);
       if (response.statusCode == 200 || response.statusCode == 201) {
        // print(response.data);
         final downloadsList = (response.data['results'] as List).map((e) {

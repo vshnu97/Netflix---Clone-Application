@@ -12,4 +12,7 @@ class ApiEndPoints {
 
   static const search =
       'https://api.themoviedb.org/3/search/movie?api_key=$apiKey';
+
+  static const indian =
+      'https://api.themoviedb.org/3/discover/movie?api_key=$apiKey&with_origin_country=IN';
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +15,7 @@ class ScreenNewAndHot extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       BlocProvider.of<SearchBloc>(context).add(const Initialize());
-     });
+    });
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -33,10 +34,15 @@ class ScreenNewAndHot extends StatelessWidget {
                 size: 30,
               ),
               kWidth,
-              Container(
+              CachedNetworkImage(
+                imageUrl:
+                    'https://i.pinimg.com/564x/61/54/76/61547625e01d8daf941aae3ffb37f653.jpg',
                 width: 30,
                 height: 30,
-                color: Colors.green,
+               
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
               kWidth,
             ],
